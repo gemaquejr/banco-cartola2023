@@ -8,7 +8,7 @@ module.exports = {
         awayTeam: 'Paysandu',
         homeScore: 4,
         awayScore: 0,
-        date: new Date(),
+        date: '22-04-2023',
         stadium: 'Mangueirão',
         createdAt: new Date(),
         updatedAt: new Date()

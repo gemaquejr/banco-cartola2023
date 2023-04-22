@@ -7,7 +7,7 @@ class Match extends Model {
   public awayTeam!: string;
   public homeScore!: number;
   public awayScore!: number;
-  public date!: Date;
+  public date!: string;
   public stadium!: string;
 
   public readonly createdAt!: Date;
@@ -37,7 +37,7 @@ Match.init({
       allowNull: false,
     },
     date: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     stadium: {

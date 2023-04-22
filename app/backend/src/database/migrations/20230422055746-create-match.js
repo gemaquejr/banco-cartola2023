@@ -16,13 +16,13 @@ module.exports = {
         type: Sequelize.STRING
       },
       homeScore: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       awayScore: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       stadium: {
         type: Sequelize.STRING
