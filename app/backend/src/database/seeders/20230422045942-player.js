@@ -7,7 +7,7 @@ module.exports = {
         name: 'Jogador 1',
         age: 25,
         club: 'Remo',
-        position: Atacante,
+        position: 'Atacante',
         starter: true,
         value: 100.50,
         lastScore: 19.50,
