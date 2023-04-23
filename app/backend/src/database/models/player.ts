@@ -47,15 +47,15 @@ Player.init({
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    lastScore: {
+    last_score: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    minValueToIncrease: {
+    min_value_to_increase: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    soccerMatch: {
+    soccer_match: {
       type: DataTypes.STRING,
       allowNull: false,
     }, 

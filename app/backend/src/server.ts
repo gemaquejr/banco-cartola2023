@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/teams', routes.teamRouter);
+app.use('/players', routes.playerRouter);
 
 app.listen(PORT, ()=> {
     console.log(`Server is running on port: ${PORT}`)

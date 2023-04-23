@@ -10,18 +10,18 @@ module.exports = {
         position: 'Atacante',
         starter: true,
         value: 100.50,
-        lastScore: 19.50,
-        minValueToIncrease: 2.30,
-        soccerMatch: 'Time A x Time B',
+        last_score: 19.50,
+        min_value_to_increase: 2.30,
+        soccer_match: 'Time A x Time B',
         createdAt: new Date(),
         updatedAt: new Date()
       },
     ];
 
-    await queryInterface.bulkInsert('Players', players, {});
+    await queryInterface.bulkInsert('players', players, {});
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.bulkDelete('Players', null, {});
+    await queryInterface.bulkDelete('players', null, {});
   }
 };

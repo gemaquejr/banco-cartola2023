@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Players', {
+    await queryInterface.createTable('players', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -33,15 +33,15 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
-      lastScore: {
+      last_score: {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
-      minValueToIncrease: {
+      min_value_to_increase: {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
-      soccerMatch: {
+      soccer_match: {
         type: Sequelize.STRING,
         allowNull: false,
       }, 
@@ -58,6 +58,6 @@ module.exports = {
     });
   },
   async down(queryInterface, _Sequelize) {
-    await queryInterface.dropTable('Players');
+    await queryInterface.dropTable('players');
   }
 };
