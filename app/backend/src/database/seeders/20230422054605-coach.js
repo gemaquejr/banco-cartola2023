@@ -12,10 +12,10 @@ module.exports = {
       },
     ];
 
-    await queryInterface.bulkInsert('Coaches', coaches, {});
+    await queryInterface.bulkInsert('coaches', coaches, {});
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.bulkDelete('Coaches', null, {});
+    await queryInterface.bulkDelete('coaches', null, {});
   }
 };

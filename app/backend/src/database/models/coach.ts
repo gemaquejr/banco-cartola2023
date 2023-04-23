@@ -32,7 +32,7 @@ Coach.init({
 }, {
 underscored: true,
 sequelize: db,
-modelName: 'coach',
+modelName: 'coaches',
 timestamps: false,
 });
 
