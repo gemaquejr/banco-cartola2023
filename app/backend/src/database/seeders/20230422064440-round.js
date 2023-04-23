@@ -11,10 +11,10 @@ module.exports = {
       },
     ];
 
-    await queryInterface.bulkInsert('Rounds', rounds, {});
+    await queryInterface.bulkInsert('rounds', rounds, {});
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.bulkDelete('Rounds', null, {});
+    await queryInterface.bulkDelete('rounds', null, {});
   }
 };
