@@ -4,26 +4,26 @@ module.exports = {
   up: async (queryInterface, _Sequelize) => {
     const teams = [
       {
-        teamName: 'Remo',
+        team_name: 'Remo',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        teamName: 'Paysandu',
+        team_name: 'Paysandu',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        teamName: 'Tuna',
+        team_name: 'Tuna',
         createdAt: new Date(),
         updatedAt: new Date()
       },
     ];
 
-    await queryInterface.bulkInsert('Teams', teams, {});
+    return queryInterface.bulkInsert('teams', teams, {});
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.bulkDelete('Teams', null, {});
+    await queryInterface.bulkDelete('teams', null, {});
   }
 };

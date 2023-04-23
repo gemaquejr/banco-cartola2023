@@ -5,6 +5,6 @@ const teamRouter = Router();
 
 const teamController = new TeamController();
 
-teamRouter.get('/', (req, res) => teamController.getTeams(req, res));
+teamRouter.get('/', (req, res) => teamController.getAllTeams(req, res));
 
 export default teamRouter;
