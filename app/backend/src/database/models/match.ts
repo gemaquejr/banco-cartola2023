@@ -20,19 +20,19 @@ Match.init({
       autoIncrement: true,
       primaryKey: true,
     },
-    homeTeam: {
+    home_team: {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
-    awayTeam: {
+    away_team: {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
-    homeScore: {
+    home_score: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    awayScore: {
+    away_score: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

@@ -2,23 +2,23 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Matches', {
+    await queryInterface.createTable('matches', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      homeTeam: {
+      home_team: {
         type: Sequelize.STRING
       },
-      awayTeam: {
+      away_team: {
         type: Sequelize.STRING
       },
-      homeScore: {
+      home_score: {
         type: Sequelize.INTEGER
       },
-      awayScore: {
+      away_score: {
         type: Sequelize.INTEGER
       },
       date: {
@@ -38,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Matches');
+    await queryInterface.dropTable('matches');
   }
 };

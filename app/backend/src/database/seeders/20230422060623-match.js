@@ -4,10 +4,10 @@ module.exports = {
   up: async (queryInterface, _Sequelize) => {
     const matches = [
       {
-        homeTeam: 'Remo',
-        awayTeam: 'Paysandu',
-        homeScore: 4,
-        awayScore: 0,
+        home_team: 'Remo',
+        away_team: 'Paysandu',
+        home_score: 4,
+        away_score: 0,
         date: '22-04-2023',
         stadium: 'Mangueirão',
         createdAt: new Date(),
@@ -15,10 +15,10 @@ module.exports = {
       },
     ];
 
-    await queryInterface.bulkInsert('Matches', matches, {});
+    await queryInterface.bulkInsert('matches', matches, {});
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.bulkDelete('Matches', null, {});
+    await queryInterface.bulkDelete('matches', null, {});
   }
 };
