@@ -9,6 +9,7 @@ app.use(express.json());
 
 app.use('/teams', routes.teamRouter);
 app.use('/players', routes.playerRouter);
+app.use('/coaches', routes.coachRouter);
 
 app.listen(PORT, ()=> {
     console.log(`Server is running on port: ${PORT}`)
