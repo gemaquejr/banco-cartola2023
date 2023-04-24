@@ -26,4 +26,13 @@ export default class RoundService {
         await round.update(roundData);
         return round;
     }
+
+    public async deleteRoundById(roundId: number) {
+        const round = await this.roundModel.findByPk(roundId);
+        if (!round) {
+          throw new Error('Round not found');
+        }
+        await round.destroy();
+        return round;
+    }
 }

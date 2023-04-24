@@ -49,4 +49,16 @@ export default class RoundController {
             return res.status(500).json({ message: 'Error updating round' });
         }
     }
+
+    async deleteRoundById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+
+            const deletedRound = await this.roundService.deleteRoundById(Number(id));
+            return res.status(200).json(deletedRound);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error deleting round' });
+        }
+    }
 }
