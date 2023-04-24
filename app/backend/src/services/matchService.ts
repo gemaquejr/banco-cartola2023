@@ -9,12 +9,21 @@ export default class MatchService {
     }
 
     public async getAllMatches() {
-        const result = await this.matchModel.findAll();
-        return result;
+        const matches = await this.matchModel.findAll();
+        return matches;
     }
 
-    public async getMatchById(coachId: number) {
-        const match = await this.matchModel.findByPk(coachId);
+    public async getMatchById(matchId: number) {
+        const match = await this.matchModel.findByPk(matchId);
         return match
+    }
+
+    public async updateMatchById(matchId: number, matchData: any) {
+        const match = await this.matchModel.findByPk(matchId);
+        if (!match) {
+          throw new Error('Match not found');
+        }
+        await match.update(matchData);
+        return match;
     }
 }

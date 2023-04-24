@@ -36,4 +36,17 @@ export default class MatchController {
             return res.status(500).json({ message: 'Error retrieving matches' });
         }
     }
+
+    async updateMatchById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            const updatedMatchData = req.body;
+
+            const match = await this.matchService.updateMatchById(Number(id), updatedMatchData);
+            return res.status(200).json(match);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error updating match' });
+        }
+    }
 }
