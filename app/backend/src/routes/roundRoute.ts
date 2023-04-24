@@ -7,5 +7,6 @@ const roundController = new RoundController();
 
 roundRouter.post('/', (req, res) => roundController.createRound(req, res));
 roundRouter.get('/', (req, res) => roundController.getAllRounds(req, res));
+roundRouter.get('/:id', (req, res) => roundController.getRoundById(req, res));
 
 export default roundRouter;

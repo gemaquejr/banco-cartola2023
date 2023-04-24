@@ -12,4 +12,9 @@ export default class RoundService {
         const result = await this.roundModel.findAll();
         return result;
     }
+
+    public async getRoundById(roundId: number) {
+        const round = await this.roundModel.findByPk(roundId);
+        return round
+    }
 }

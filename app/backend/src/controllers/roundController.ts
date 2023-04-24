@@ -24,4 +24,16 @@ export default class RoundController {
             return res.status(500).json({ message: 'Error retrieving rounds' });
         }
     }
+
+    async getRoundById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            
+            const round = await this.roundService.getRoundById(Number(id));
+            return res.status(200).json(round);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error retrieving round' });
+        }
+    }
 }
