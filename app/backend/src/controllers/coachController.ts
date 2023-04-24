@@ -13,4 +13,15 @@ export default class CoachController {
             return res.status(500).json({ message: 'Error retrieving coaches' });
         }
     }
+
+    async createCoach(req: Request, res: Response) {
+        try {
+        const coachData = req.body;
+        const createdCoach = await this.coachService.createCoach(coachData);
+        return res.status(201).json(createdCoach);
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Error creating coach' });
+      }
+    }
 }

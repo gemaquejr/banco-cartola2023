@@ -7,4 +7,9 @@ export default class CoachService {
         const result = await this.coachModel.findAll();
         return result;
     }
+
+    public async createCoach(coachData: any) {
+        const coach = await this.coachModel.create(coachData)
+        return coach
+    }
 }
