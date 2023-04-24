@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { requestData, api } from "./services/requests";
+import { requestData } from "../services/requests";
 
 const TeamForm = () => {
   const [team, setTeam] = useState({ team_name: "", team_logo: "" });
@@ -29,9 +29,9 @@ const TeamForm = () => {
     e.preventDefault();
     try {
       if (editing) {
-        await api.put(`/api/teams/${teamId}`, team);
+        await requestData.put(`/api/teams/${teamId}`, team);
       } else {
-        await api.post("/api/teams", team);
+        await requestData.post("/api/teams", team);
       }
       fetchTeams();
       setTeam({ team_name: "", team_logo: "" });
@@ -50,7 +50,7 @@ const TeamForm = () => {
 
   const handleDelete = async (id) => {
     try {
-      await api.delete(`/api/teams/${id}`);
+      await requestData.delete(`/api/teams/${id}`);
       fetchTeams();
     } catch (error) {
       console.error("Erro ao excluir equipe:", error);
