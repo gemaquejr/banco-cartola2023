@@ -36,4 +36,17 @@ export default class PlayerController {
             return res.status(500).json({ message: 'Error retrieving player' });
         }
     }
+
+    async updatePlayerById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            const updatedPlayerData = req.body;
+
+            const player = await this.playerService.updatePlayerById(Number(id), updatedPlayerData);
+            return res.status(200).json(player);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error updating player' });
+        }
+    }
 }

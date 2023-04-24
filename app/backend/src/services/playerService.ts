@@ -17,4 +17,13 @@ export default class PlayerService {
         const player = await this.playerModel.findByPk(playerId);
         return player
     }
+
+    public async updatePlayerById(playerId: number, playerData: any) {
+        const player = await this.playerModel.findByPk(playerId);
+        if (!player) {
+          throw new Error('Player not found');
+        }
+        await player.update(playerData);
+        return player;
+    }
 }
