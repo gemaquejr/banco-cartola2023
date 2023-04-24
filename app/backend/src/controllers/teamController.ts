@@ -36,4 +36,17 @@ export default class TeamController {
             return res.status(500).json({ message: 'Error retrieving team' });
         }
     }
+
+    async updateTeamById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            const updatedTeamData = req.body;
+
+            const team = await this.teamService.updateTeamById(Number(id), updatedTeamData);
+            return res.status(200).json(team);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error updating team' });
+        }
+    }
 }

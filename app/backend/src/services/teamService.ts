@@ -17,4 +17,13 @@ export default class TeamService {
         const team = await this.teamModel.findByPk(teamId);
         return team
     }
+
+    public async updateTeamById(teamId: number, teamData: any) {
+        const team = await this.teamModel.findByPk(teamId);
+        if (!team) {
+          throw new Error('Team not found');
+        }
+        await team.update(teamData);
+        return team;
+    }
 }
