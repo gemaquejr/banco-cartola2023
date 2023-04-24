@@ -24,4 +24,16 @@ export default class TeamController {
             return res.status(500).json({ message: 'Error retrieving teams' });
         }
     }
+
+    async getTeamById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            
+            const team = await this.teamService.getTeamById(Number(id));
+            return res.status(200).json(team);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error retrieving team' });
+        }
+    }
 }
