@@ -49,4 +49,16 @@ export default class MatchController {
             return res.status(500).json({ message: 'Error updating match' });
         }
     }
+
+    async deleteMatchById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+
+            const deletedMatch = await this.matchService.deleteMatchById(Number(id));
+            return res.status(200).json(deletedMatch);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error deleting match' });
+        }
+    }
 }

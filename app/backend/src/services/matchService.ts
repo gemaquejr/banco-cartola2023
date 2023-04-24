@@ -26,4 +26,13 @@ export default class MatchService {
         await match.update(matchData);
         return match;
     }
+
+    public async deleteMatchById(matchId: number) {
+        const match = await this.matchModel.findByPk(matchId);
+        if (!match) {
+          throw new Error('Match not found');
+        }
+        await match.destroy();
+        return match;
+    }
 }

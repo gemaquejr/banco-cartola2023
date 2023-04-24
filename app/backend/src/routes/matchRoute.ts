@@ -9,5 +9,6 @@ matchRouter.post('/', (req, res) => matchController.createMatch(req, res));
 matchRouter.get('/', (req, res) => matchController.getAllMatches(req, res));
 matchRouter.get('/:id', (req, res) => matchController.getMatchById(req, res));
 matchRouter.put('/:id', (req, res) => matchController.updateMatchById(req, res));
+matchRouter.delete('/:id', (req, res) => matchController.deleteMatchById(req, res));
 
 export default matchRouter;
