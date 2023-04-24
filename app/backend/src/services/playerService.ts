@@ -26,4 +26,13 @@ export default class PlayerService {
         await player.update(playerData);
         return player;
     }
+
+    public async deletePlayerById(playerId: number) {
+        const player = await this.playerModel.findByPk(playerId);
+        if (!player) {
+          throw new Error('Player not found');
+        }
+        await player.destroy();
+        return player;
+    }
 }
