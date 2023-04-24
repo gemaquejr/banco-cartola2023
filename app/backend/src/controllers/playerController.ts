@@ -4,6 +4,17 @@ import PlayerService from '../services/playerService';
 export default class PlayerController {
     constructor(private playerService = new PlayerService()) {}
 
+    async createPlayer(req: Request, res: Response) {
+        try {
+            const playerData = req.body;
+            const createdPlayer = await this.playerService.createPlayer(playerData);
+            return res.status(201).json(createdPlayer);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error creating player' });
+        }
+    }
+    
     async getAllPlayers(_req: Request, res: Response) {
         try {
             const players = await this.playerService.getAllPlayers();
