@@ -48,4 +48,16 @@ export default class CoachController {
           return res.status(500).json({ message: 'Error updating coach' });
         }
     }
+
+    async deleteCoachById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+
+            const deletedCoach = await this.coachService.deleteCoachById(Number(id));
+            return res.status(200).json(deletedCoach);
+        } catch (err) {
+          console.error(err);
+          return res.status(500).json({ message: 'Error deleting coach' });
+        }
+    }
 }

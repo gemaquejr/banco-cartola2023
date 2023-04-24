@@ -26,4 +26,13 @@ export default class CoachService {
           await coach.update(coachData);
           return coach;
         }
+
+    public async deleteCoachById(coachId: number) {
+          const coach = await this.coachModel.findByPk(coachId);
+          if (!coach) {
+            throw new Error('Coach not found');
+        }
+          await coach.destroy();
+          return coach;
+        }
     }
