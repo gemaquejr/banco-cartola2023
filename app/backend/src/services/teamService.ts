@@ -26,4 +26,13 @@ export default class TeamService {
         await team.update(teamData);
         return team;
     }
+
+    public async deleteTeamById(teamId: number) {
+        const team = await this.teamModel.findByPk(teamId);
+        if (!team) {
+          throw new Error('Team not found');
+        }
+        await team.destroy();
+        return team;
+    }
 }

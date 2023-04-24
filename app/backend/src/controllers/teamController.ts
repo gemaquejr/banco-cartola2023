@@ -49,4 +49,16 @@ export default class TeamController {
             return res.status(500).json({ message: 'Error updating team' });
         }
     }
+
+    async deleteTeamById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+
+            const deletedTeam = await this.teamService.deleteTeamById(Number(id));
+            return res.status(200).json(deletedTeam);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error deleting team' });
+        }
+    }
 }
