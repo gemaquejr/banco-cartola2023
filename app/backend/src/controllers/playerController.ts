@@ -24,4 +24,16 @@ export default class PlayerController {
             return res.status(500).json({ message: 'Error retrieving players' });
         }
     }
+
+    async getPlayerById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            
+            const player = await this.playerService.getPlayerById(Number(id));
+            return res.status(200).json(player);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error retrieving player' });
+        }
+    }
 }

@@ -12,4 +12,9 @@ export default class PlayerService {
         const result = await this.playerModel.findAll();
         return result;
     }
+
+    public async getPlayerById(playerId: number) {
+        const player = await this.playerModel.findByPk(playerId);
+        return player
+    }
 }
