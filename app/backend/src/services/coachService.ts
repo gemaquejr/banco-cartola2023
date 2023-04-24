@@ -12,4 +12,9 @@ export default class CoachService {
         const coach = await this.coachModel.create(coachData)
         return coach
     }
+
+    public async getCoachById(coachId: number) {
+          const coach = await this.coachModel.findByPk(coachId);
+          return coach
+    }
 }

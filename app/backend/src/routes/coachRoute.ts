@@ -7,5 +7,6 @@ const coachController = new CoachController();
 
 coachRouter.get('/', (req, res) => coachController.getAllCoaches(req, res));
 coachRouter.post('/', (req, res) => coachController.createCoach(req, res));
+coachRouter.get('/:id', (req, res) => coachController.getCoachById(req, res));
 
 export default coachRouter;
