@@ -17,4 +17,13 @@ export default class CoachService {
           const coach = await this.coachModel.findByPk(coachId);
           return coach
     }
-}
+
+    public async updateCoachById(coachId: number, coachData: any) {
+          const coach = await this.coachModel.findByPk(coachId);
+          if (!coach) {
+            throw new Error('Coach not found');
+        }
+          await coach.update(coachData);
+          return coach;
+        }
+    }
