@@ -24,4 +24,16 @@ export default class MatchController {
             return res.status(500).json({ message: 'Error retrieving matches' });
         }
     }
+
+    async getMatchById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            
+            const matches = await this.matchService.getMatchById(Number(id));
+            return res.status(200).json(matches);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error retrieving matches' });
+        }
+    }
 }

@@ -12,4 +12,9 @@ export default class MatchService {
         const result = await this.matchModel.findAll();
         return result;
     }
+
+    public async getMatchById(coachId: number) {
+        const match = await this.matchModel.findByPk(coachId);
+        return match
+    }
 }
