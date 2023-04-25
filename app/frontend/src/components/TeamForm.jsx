@@ -74,9 +74,25 @@ const TeamForm = () => {
       <ul>
         {teams.map((team) => (
           <li key={team.id}>
-            {team.team_name}
-            <button onClick={() => handleEdit(team)}>Editar</button>
-            <button onClick={() => handleDelete(team.id)}>Excluir</button>
+            {editing && team.id === teamId ? (
+              <div>
+                <input
+                  type="text"
+                  name="team_name"
+                  value={team.team_name}
+                  onChange={handleChange}
+                  placeholder="Nome da equipe"
+                />
+                <button onClick={handleSubmit}>Salvar</button>
+                <button onClick={() => setEditing(false)}>Cancelar</button>
+              </div>
+            ) : (
+              <div>
+                {team.team_name}
+                <button onClick={() => handleEdit(team)}>Editar</button>
+                <button onClick={() => handleDelete(team.id)}>Excluir</button>
+              </div>
+            )}
           </li>
         ))}
       </ul>
