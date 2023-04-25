@@ -19,4 +19,9 @@ export const putData = async (endpoint, data) => {
   return response;
 };
 
+export const deleteData = async (id) => {
+  const response = await api.delete(id);
+  return response;
+};
+
 export default api;

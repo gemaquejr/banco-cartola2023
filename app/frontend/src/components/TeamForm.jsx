@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { requestData, postData, putData } from '../services/requests';
+import { requestData, postData, putData, deleteData } from '../services/requests';
 
 const TeamForm = () => {
   const [team, setTeam] = useState({ team_name: "" });
@@ -51,7 +51,7 @@ const TeamForm = () => {
 
   const handleDelete = async (id) => {
     try {
-      await requestData.delete(`/teams/${id}`);
+      await deleteData(`/teams/${id}`);
       fetchTeams();
     } catch (error) {
       console.error("Erro ao excluir equipe:", error);
