@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { requestData } from "../services/requests";
+import { requestData, postData, putData } from '../services/requests';
 
 const TeamForm = () => {
-  const [team, setTeam] = useState({ team_name: "", team_logo: "" });
+  const [team, setTeam] = useState({ team_name: "" });
   const [teams, setTeams] = useState([]);
   const [editing, setEditing] = useState(false);
   const [teamId, setTeamId] = useState(null);
@@ -13,8 +13,9 @@ const TeamForm = () => {
 
   const fetchTeams = async () => {
     try {
-      const response = await requestData("/api/teams");
-      setTeams(response);
+      const response = await requestData("/teams");
+      const { data } = response;
+      setTeams(data);
     } catch (error) {
       console.error("Erro ao buscar equipes:", error);
     }
@@ -29,12 +30,12 @@ const TeamForm = () => {
     e.preventDefault();
     try {
       if (editing) {
-        await requestData.put(`/api/teams/${teamId}`, team);
+        await putData(`/teams/${teamId}`, team);
       } else {
-        await requestData.post("/api/teams", team);
+        await postData("/teams", team);
       }
       fetchTeams();
-      setTeam({ team_name: "", team_logo: "" });
+      setTeam({ team_name: "" });
       setEditing(false);
       setTeamId(null);
     } catch (error) {
@@ -45,12 +46,12 @@ const TeamForm = () => {
   const handleEdit = (team) => {
     setTeamId(team.id);
     setEditing(true);
-    setTeam({ team_name: team.team_name, team_logo: team.team_logo });
+    setTeam({ team_name: team.team_name });
   };
 
   const handleDelete = async (id) => {
     try {
-      await requestData.delete(`/api/teams/${id}`);
+      await requestData.delete(`/teams/${id}`);
       fetchTeams();
     } catch (error) {
       console.error("Erro ao excluir equipe:", error);
@@ -68,19 +69,12 @@ const TeamForm = () => {
           onChange={handleChange}
           placeholder="Nome da equipe"
         />
-        <input
-          type="text"
-          name="team_logo"
-          value={team.team_logo}
-          onChange={handleChange}
-          placeholder="Logo da equipe"
-        />
         <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
       </form>
       <ul>
         {teams.map((team) => (
           <li key={team.id}>
-            {team.team_name} - {team.team_logo}
+            {team.team_name}
             <button onClick={() => handleEdit(team)}>Editar</button>
             <button onClick={() => handleDelete(team.id)}>Excluir</button>
           </li>
