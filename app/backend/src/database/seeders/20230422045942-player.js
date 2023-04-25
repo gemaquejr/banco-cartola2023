@@ -9,10 +9,6 @@ module.exports = {
         club: 'Remo',
         position: 'Atacante',
         starter: true,
-        value: 100.50,
-        last_score: 19.50,
-        min_value_to_increase: 2.30,
-        soccer_match: 'Time A x Time B',
         createdAt: new Date(),
         updatedAt: new Date()
       },

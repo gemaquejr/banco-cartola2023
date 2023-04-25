@@ -33,18 +33,6 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
-      last_score: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
-      },
-      min_value_to_increase: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
-      },
-      soccer_match: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      }, 
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

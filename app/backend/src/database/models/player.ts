@@ -8,10 +8,6 @@ class Player extends Model {
   public club!: string;
   public position!: string;
   public starter!: string;
-  public value!: number;
-  public lastScore!: number;
-  public minValueToIncrease!: string;
-  public soccerMatch!: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -43,22 +39,6 @@ Player.init({
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    value: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-    last_score: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-    min_value_to_increase: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-    soccer_match: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }, 
 }, {
 underscored: true,
 sequelize: db,
