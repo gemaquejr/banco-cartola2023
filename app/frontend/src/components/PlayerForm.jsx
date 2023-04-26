@@ -6,6 +6,11 @@ const PlayerForm = () => {
   const [players, setPlayers] = useState([]);
   const [editing, setEditing] = useState(false);
   const [playerId, setPlayerId] = useState(null);
+  const [editedPlayerName, setEditedPlayerName] = useState("");
+  const [editedPlayerAge, setEditedPlayerAge] = useState("");
+  const [editedPlayerClub, setEditedPlayerClub] = useState("");
+  const [editedPlayerPosition, setEditedPlayerPosition] = useState("");
+  const [editedPlayerStarter, setEditedPlayerStarter] = useState("");
 
   useEffect(() => {
     fetchPlayers();
@@ -35,7 +40,13 @@ const PlayerForm = () => {
     e.preventDefault();
     try {
       if (editing) {
-        await putData(`/players/${playerId}`, player);
+        await putData(`/players/${playerId}`, {
+          name: editedPlayerName,
+          age: editedPlayerAge,
+          club: editedPlayerClub,
+          position: editedPlayerPosition,
+          starter: editedPlayerStarter
+        });
       } else {
         await postData("/players", player);
       }
@@ -43,6 +54,11 @@ const PlayerForm = () => {
       setPlayer({ name: "", age: "", club: "", position: "", starter: false });
       setEditing(false);
       setPlayerId(null);
+      setEditedPlayerName("");
+      setEditedPlayerAge("");
+      setEditedPlayerClub("");
+      setEditedPlayerPosition("");
+      setEditedPlayerStarter(false);
     } catch (error) {
       console.error("Erro ao salvar jogador:", error);
     }
@@ -51,7 +67,11 @@ const PlayerForm = () => {
   const handleEdit = (player) => {
     setPlayerId(player.id);
     setEditing(true);
-    setPlayer({ name: player.name, age: player.age, club: player.club, position: player.position, starter: player.starter });
+    setEditedPlayerName(player.name);
+    setEditedPlayerAge(player.age);
+    setEditedPlayerClub(player.club);
+    setEditedPlayerPosition(player.position);
+    setEditedPlayerStarter(player.starter);
   };
 
   const handleDelete = async (id) => {
@@ -67,51 +87,146 @@ const PlayerForm = () => {
     <div>
       <h2>Jogadores</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          value={player.name}
-          onChange={handleChange}
-          placeholder="Nome do jogador"
-        />
-        <input
-          type="number"
-          name="age"
-          value={player.age}
-          onChange={handleChange}
-          placeholder="Idade do jogador"
-        />
-        <input
-          type="text"
-          name="club"
-          value={player.club}
-          onChange={handleChange}
-          placeholder="Time do jogador"
-        />
-        <input
-          type="text"
-          name="position"
-          value={player.position}
-          onChange={handleChange}
-          placeholder="Posição do jogador"
-        />
-        <label>
-            Jogador Titular ?
+        { editing ? (
+          <>
             <input
-            type="checkbox"
-            name="starter"
-            value={player.starter}
-            onChange={handleCheckboxChange}
+              type="text"
+              name="name"
+              value={player.name}
+              onChange={handleChange}
+              placeholder="Nome do jogador"
+              hidden
             />
-        </label>
-        <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+            <input
+              type="number"
+              name="age"
+              value={player.age}
+              onChange={handleChange}
+              placeholder="Idade do jogador"
+              hidden
+            />
+            <input
+              type="text"
+              name="club"
+              value={player.club}
+              onChange={handleChange}
+              placeholder="Time do jogador"
+              hidden
+            />
+            <input
+              type="text"
+              name="position"
+              value={player.position}
+              onChange={handleChange}
+              placeholder="Posição do jogador"
+              hidden
+            />
+            <label hidden>
+                Jogador Titular ?
+                <input
+                type="checkbox"
+                name="starter"
+                value={player.starter}
+                onChange={handleCheckboxChange}
+                hidden
+                />
+            </label>
+          </>
+          ) : (
+            <>
+            <input
+              type="text"
+              name="name"
+              value={player.name}
+              onChange={handleChange}
+              placeholder="Nome do jogador"
+            />
+            <input
+              type="number"
+              name="age"
+              value={player.age}
+              onChange={handleChange}
+              placeholder="Idade do jogador"
+            />
+            <input
+              type="text"
+              name="club"
+              value={player.club}
+              onChange={handleChange}
+              placeholder="Time do jogador"
+            />
+            <input
+              type="text"
+              name="position"
+              value={player.position}
+              onChange={handleChange}
+              placeholder="Posição do jogador"
+            />
+            <label>
+                Jogador Titular ?
+                <input
+                type="checkbox"
+                name="starter"
+                value={player.starter}
+                onChange={handleCheckboxChange}
+                />
+            </label>
+            <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+          </>
+        )}
       </form>
       <ul>
         {players.map((player) => (
           <li key={player.id}>
-            {player.name} - {player.age} - {player.club} - {player.position} - {player.starter ? "Sim" : "Não"}
-            <button onClick={() => handleEdit(player)}>Editar</button>
-            <button onClick={() => handleDelete(player.id)}>Excluir</button>
+            {editing && player.id === playerId ? (
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  value={editedPlayerName}
+                  onChange={(e) => setEditedPlayerName(e.target.value)}
+                  placeholder="Nome do jogador"
+                />
+                <input
+                  type="number"
+                  name="age"
+                  value={editedPlayerAge}
+                  onChange={(e) => setEditedPlayerAge(e.target.value)}
+                  placeholder="Idade do jogador"
+                />
+                <input
+                  type="text"
+                  name="club"
+                  value={editedPlayerClub}
+                  onChange={(e) => setEditedPlayerClub(e.target.value)}
+                  placeholder="Time do jogador"
+                />
+                <input
+                  type="text"
+                  name="position"
+                  value={editedPlayerPosition}
+                  onChange={(e) => setEditedPlayerPosition(e.target.value)}
+                  placeholder="Posição do jogador"
+                />
+                <label>
+                    Jogador Titular ?
+                    <input
+                    type="checkbox"
+                    name="starter"
+                    value={editedPlayerStarter}
+                    onChange={(e) => setEditedPlayerStarter(e.target.value)}
+                    />
+                </label>
+                <button onClick={handleSubmit}>Salvar</button>
+                <button onClick={() => setEditing(false)}>Cancelar</button>
+            </div>
+          ) : (
+            <div>
+              {player.name} - {player.age} - {player.club} - {player.position} - {player.starter ? "Sim" : "Não"}
+              <button onClick={() => handleEdit(player)}>Editar</button>
+              <button onClick={() => handleDelete(player.id)}>Excluir</button>
+            </div>
+          )}
           </li>
         ))}
       </ul>
