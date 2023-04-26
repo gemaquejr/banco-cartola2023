@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { requestData, postData, putData, deleteData } from '../services/requests';
 
+import Button from "./Button/Button";
+
 const PlayerForm = () => {
   const [player, setPlayer] = useState({ name: "", age: "", club: "", position: "", starter: false });
   const [players, setPlayers] = useState([]);
@@ -171,7 +173,7 @@ const PlayerForm = () => {
                 onChange={handleCheckboxChange}
                 />
             </label>
-            <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+            <Button type="submit" onClick={handleSubmit} label={editing ? "Editar" : "Adicionar"} />
           </>
         )}
       </form>
@@ -217,14 +219,14 @@ const PlayerForm = () => {
                     onChange={(e) => setEditedPlayerStarter(e.target.value)}
                     />
                 </label>
-                <button onClick={handleSubmit}>Salvar</button>
-                <button onClick={() => setEditing(false)}>Cancelar</button>
+                <Button onClick={handleSubmit} label="Salvar" />
+                <Button onClick={() => setEditing(false)} label="Cancelar" />
             </div>
           ) : (
             <div>
               {player.name} - {player.age} - {player.club} - {player.position} - {player.starter ? "Sim" : "Não"}
-              <button onClick={() => handleEdit(player)}>Editar</button>
-              <button onClick={() => handleDelete(player.id)}>Excluir</button>
+              <Button onClick={() => handleEdit(player)} label="Editar" />
+              <Button onClick={() => handleDelete(player.id)} label="Excluir" />
             </div>
           )}
           </li>
