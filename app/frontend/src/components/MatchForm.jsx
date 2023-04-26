@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { requestData, postData, putData, deleteData } from '../services/requests';
 
+import Button from "./Button/Button";
+
 const MatchForm = () => {
   const [match, setMatch] = useState({ home_team: "", home_score: "", away_team: "", away_score: "", date: "", stadium: "" });
   const [matches, setMatches] = useState([]);
@@ -182,7 +184,7 @@ const MatchForm = () => {
             onChange={handleChange}
             placeholder="Local do confronto"
           />
-            <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+            <Button type="submit" label={editing ? "Editar" : "Adicionar"} />
           </>
         )}
       </form>
@@ -233,14 +235,14 @@ const MatchForm = () => {
                   onChange={(e) => setEditedStadium(e.target.value)}
                   placeholder="Local do confronto"
                 />
-                  <button onClick={handleSubmit}>Salvar</button>
-                  <button onClick={() => setEditing(false)}>Cancelar</button>
+                  <Button onClick={handleSubmit} label="Salvar" />
+                  <Button onClick={() => setEditing(false)} label="Cancelar" />
               </div>
             ) : (
               <div>
                 {match.home_team}  {match.home_score} X {match.away_score} {match.away_team} ( {match.date} - {match.stadium} )
-                <button onClick={() => handleEdit(match)}>Editar</button>
-                <button onClick={() => handleDelete(match.id)}>Excluir</button>
+                <Button onClick={() => handleEdit(match)} label="Editar" />
+                <Button onClick={() => handleDelete(match.id)} label="Excluir" />
               </div>
               )}
           </li>
