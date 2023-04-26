@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { requestData, postData, putData, deleteData } from '../services/requests';
 
+import Button from "./Button/Button";
+
 const RoundForm = () => {
   const [round, setRound] = useState({ number: "", matches: "" });
   const [rounds, setRounds] = useState([]);
@@ -105,7 +107,7 @@ const RoundForm = () => {
               onChange={handleChange}
               placeholder="Número do Jogo"
             />
-            <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+            <Button type="submit" onClick={handleSubmit} label={editing ? "Editar" : "Adicionar"} />
           </>
         )}
       </form>
@@ -128,14 +130,14 @@ const RoundForm = () => {
                     onChange={(e) => setEditedRoundMatches(e.target.value)}
                     placeholder="Número do Jogo"
                   />
-                  <button onClick={handleSubmit}>Salvar</button>
-                  <button onClick={() => setEditing(false)}>Cancelar</button>
+                  <Button onClick={handleSubmit} label="Salvar" />
+                  <Button onClick={() => setEditing(false)} label="Cancelar" />
               </div>
             ) : (
               <div>
                 {round.number} - {round.matches}
-                <button onClick={() => handleEdit(round)}>Editar</button>
-                <button onClick={() => handleDelete(round.id)}>Excluir</button>
+                <Button onClick={() => handleEdit(round)} label="Editar" />
+                <Button onClick={() => handleDelete(round.id)} label="Excluir" />
             </div>
             )}
           </li>
