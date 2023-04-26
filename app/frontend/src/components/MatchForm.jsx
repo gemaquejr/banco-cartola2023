@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { requestData, postData, putData, deleteData } from '../services/requests';
 
 const MatchForm = () => {
-  const [match, setMatch] = useState({ home_team: "", away_team: "", home_score: "", away_score: "", date: "", stadium: "" });
+  const [match, setMatch] = useState({ home_team: "", home_score: "", away_team: "", away_score: "", date: "", stadium: "" });
   const [matches, setMatches] = useState([]);
   const [editing, setEditing] = useState(false);
   const [matchId, setMatchId] = useState(null);
@@ -38,8 +38,8 @@ const MatchForm = () => {
       if (editing) {
         await putData(`/matches/${matchId}`, {
           home_team: editedMatchHomeTeam,
-          away_team: editedMatchAwayTeam,
           home_score: editedMatchHomeScore,
+          away_team: editedMatchAwayTeam,
           away_score: editedMatchAwayScore,
           date: editedDate,
           stadium: editedStadium,
@@ -48,7 +48,7 @@ const MatchForm = () => {
         await postData("/matches", match);
       }
       fetchMatches();
-      setMatch({ home_team: "", away_team: "", home_score: "", away_score: "", date: "", stadium: "" });
+      setMatch({ home_team: "", home_score: "", away_team: "", away_score: "", date: "", stadium: "" });
       setEditing(false);
       setMatchId(null);
       setEditedMatchHomeTeam("");
@@ -67,8 +67,8 @@ const MatchForm = () => {
     setMatchId(match.id);
     setEditing(true);
     setEditedMatchHomeTeam(match.home_team);
-    setEditedMatchAwayTeam(match.away_team);
     setEditedMatchHomeScore(match.home_score);
+    setEditedMatchAwayTeam(match.away_team);
     setEditedMatchAwayScore(match.away_score);
     setEditedDate(match.date);
     setEditedStadium(match.stadium);
@@ -98,19 +98,19 @@ const MatchForm = () => {
             hidden
           />
           <input
-            type="text"
-            name="away_team"
-            value={match.away_team}
-            onChange={handleChange}
-            placeholder="Nome do time visitante"
-            hidden
-          />
-          <input
             type="number"
             name="home_score"
             value={match.home_score}
             onChange={handleChange}
             placeholder="Placar do time da casa"
+            hidden
+          />
+          <input
+            type="text"
+            name="away_team"
+            value={match.away_team}
+            onChange={handleChange}
+            placeholder="Nome do time visitante"
             hidden
           />
           <input
@@ -148,18 +148,18 @@ const MatchForm = () => {
             placeholder="Nome do time da casa"
           />
           <input
-            type="text"
-            name="away_team"
-            value={match.away_team}
-            onChange={handleChange}
-            placeholder="Nome do time visitante"
-          />
-          <input
             type="number"
             name="home_score"
             value={match.home_score}
             onChange={handleChange}
             placeholder="Placar do time da casa"
+          />
+          <input
+            type="text"
+            name="away_team"
+            value={match.away_team}
+            onChange={handleChange}
+            placeholder="Nome do time visitante"
           />
           <input
             type="number"
@@ -199,18 +199,18 @@ const MatchForm = () => {
                   placeholder="Nome do time da casa"
                 />
                 <input
-                  type="text"
-                  name="away_team"
-                  value={editedMatchAwayTeam}
-                  onChange={(e) => setEditedMatchAwayTeam(e.target.value)}
-                  placeholder="Nome do time visitante"
-                />
-                <input
                   type="number"
                   name="home_score"
                   value={editedMatchHomeScore}
                   onChange={(e) => setEditedMatchHomeScore(e.target.value)}
                   placeholder="Placar do time da casa"
+                />
+                <input
+                  type="text"
+                  name="away_team"
+                  value={editedMatchAwayTeam}
+                  onChange={(e) => setEditedMatchAwayTeam(e.target.value)}
+                  placeholder="Nome do time visitante"
                 />
                 <input
                   type="number"
@@ -238,7 +238,7 @@ const MatchForm = () => {
               </div>
             ) : (
               <div>
-                {match.home_team} - {match.away_team} - {match.home_score} - {match.away_score} - {match.date} - {match.stadium}
+                {match.home_team}  {match.home_score} X {match.away_score} {match.away_team} ( {match.date} - {match.stadium} )
                 <button onClick={() => handleEdit(match)}>Editar</button>
                 <button onClick={() => handleDelete(match.id)}>Excluir</button>
               </div>
