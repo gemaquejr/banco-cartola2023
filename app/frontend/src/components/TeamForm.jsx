@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { requestData, postData, putData, deleteData } from '../services/requests';
 
+import Button from "./Button/Button";
+
 const TeamForm = () => {
   const [team, setTeam] = useState({ team_name: "" });
   const [teams, setTeams] = useState([]);
@@ -82,7 +84,7 @@ const TeamForm = () => {
               onChange={handleChange}
               placeholder="Nome da equipe"
             />
-            <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+            <Button type="submit" onClick={handleSubmit} label={editing ? "Editar" : "Adicionar"} />
           </>
         )}
       </form>
@@ -98,14 +100,14 @@ const TeamForm = () => {
                   onChange={(e) => setEditedTeamName(e.target.value)}
                   placeholder="Nome da equipe"
                 />
-                <button onClick={handleSubmit}>Salvar</button>
-                <button onClick={() => setEditing(false)}>Cancelar</button>
+                <Button onClick={handleSubmit} label="Salvar" />
+                <Button onClick={() => setEditing(false)} label="Cancelar" />
               </div>
             ) : (
               <div>
                 {team.team_name}
-                <button onClick={() => handleEdit(team)}>Editar</button>
-                <button onClick={() => handleDelete(team.id)}>Excluir</button>
+                <Button onClick={() => handleEdit(team)} label="Editar" />
+                <Button onClick={() => handleDelete(team.id)} label="Excluir" />
               </div>
             )}
           </li>
