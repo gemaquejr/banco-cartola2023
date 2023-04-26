@@ -6,6 +6,8 @@ const RoundForm = () => {
   const [rounds, setRounds] = useState([]);
   const [editing, setEditing] = useState(false);
   const [roundId, setRoundId] = useState(null);
+  const [editedRoundNumber, setEditedRoundNumber] = useState("");
+  const [editedRoundMatches, setEditedRoundMatches] = useState("");
 
   useEffect(() => {
     fetchRounds();
@@ -30,7 +32,10 @@ const RoundForm = () => {
     e.preventDefault();
     try {
       if (editing) {
-        await putData(`/rounds/${roundId}`, round);
+        await putData(`/rounds/${roundId}`, {
+          number: editedRoundNumber,
+          matches: editedRoundMatches
+        });
       } else {
         await postData("/rounds", round);
       }
@@ -38,6 +43,8 @@ const RoundForm = () => {
       setRound({ number: "", matches: "" });
       setEditing(false);
       setRoundId(null);
+      setEditedRoundNumber("");
+      setEditedRoundMatches("");
     } catch (error) {
       console.error("Erro ao salvar rodada:", error);
     }
@@ -46,7 +53,8 @@ const RoundForm = () => {
   const handleEdit = (round) => {
     setRoundId(round.id);
     setEditing(true);
-    setRound({ number: round.number, matches: round.matches });
+    setEditedRoundNumber(round.number);
+    setEditedRoundMatches(round.matches);
   };
 
   const handleDelete = async (id) => {
@@ -62,28 +70,74 @@ const RoundForm = () => {
     <div>
       <h2>Rodada</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          name="number"
-          value={round.number}
-          onChange={handleChange}
-          placeholder="Número da rodada"
-        />
-        <input
-          type="number"
-          name="matches"
-          value={round.matches}
-          onChange={handleChange}
-          placeholder="Número do Jogo"
-        />
-        <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+        { editing ? (
+        <>
+          <input
+            type="number"
+            name="number"
+            value={round.number}
+            onChange={handleChange}
+            placeholder="Número da rodada"
+            hidden
+          />
+          <input
+            type="number"
+            name="matches"
+            value={round.matches}
+            onChange={handleChange}
+            placeholder="Número do Jogo"
+            hidden
+          />
+        </>
+        ) : (
+          <>
+            <input
+              type="number"
+              name="number"
+              value={round.number}
+              onChange={handleChange}
+              placeholder="Número da rodada"
+            />
+            <input
+              type="number"
+              name="matches"
+              value={round.matches}
+              onChange={handleChange}
+              placeholder="Número do Jogo"
+            />
+            <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+          </>
+        )}
       </form>
       <ul>
         {rounds.map((round) => (
           <li key={round.id}>
-            {round.number} - {round.matches}
-            <button onClick={() => handleEdit(round)}>Editar</button>
-            <button onClick={() => handleDelete(round.id)}>Excluir</button>
+            {editing && round.id === roundId ? (
+              <div>
+                 <input
+                    type="number"
+                    name="number"
+                    value={editedRoundNumber}
+                    onChange={(e) => setEditedRoundNumber(e.target.value)}
+                    placeholder="Número da rodada"
+                 />
+                  <input
+                    type="number"
+                    name="matches"
+                    value={editedRoundMatches}
+                    onChange={(e) => setEditedRoundMatches(e.target.value)}
+                    placeholder="Número do Jogo"
+                  />
+                  <button onClick={handleSubmit}>Salvar</button>
+                  <button onClick={() => setEditing(false)}>Cancelar</button>
+              </div>
+            ) : (
+              <div>
+                {round.number} - {round.matches}
+                <button onClick={() => handleEdit(round)}>Editar</button>
+                <button onClick={() => handleDelete(round.id)}>Excluir</button>
+            </div>
+            )}
           </li>
         ))}
       </ul>
