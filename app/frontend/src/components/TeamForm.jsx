@@ -6,6 +6,7 @@ const TeamForm = () => {
   const [teams, setTeams] = useState([]);
   const [editing, setEditing] = useState(false);
   const [teamId, setTeamId] = useState(null);
+  const [editedTeamName, setEditedTeamName] = useState("");
 
   useEffect(() => {
     fetchTeams();
@@ -30,7 +31,7 @@ const TeamForm = () => {
     e.preventDefault();
     try {
       if (editing) {
-        await putData(`/teams/${teamId}`, team);
+        await putData(`/teams/${teamId}`, { team_name: editedTeamName });
       } else {
         await postData("/teams", team);
       }
@@ -38,6 +39,7 @@ const TeamForm = () => {
       setTeam({ team_name: "" });
       setEditing(false);
       setTeamId(null);
+      setEditedTeamName("");
     } catch (error) {
       console.error("Erro ao salvar equipe:", error);
     }
@@ -46,7 +48,7 @@ const TeamForm = () => {
   const handleEdit = (team) => {
     setTeamId(team.id);
     setEditing(true);
-    setTeam({ team_name: team.team_name });
+    setEditedTeamName(team.team_name);
   };
 
   const handleDelete = async (id) => {
@@ -79,8 +81,8 @@ const TeamForm = () => {
                 <input
                   type="text"
                   name="team_name"
-                  value={team.team_name}
-                  onChange={handleChange}
+                  value={editedTeamName}
+                  onChange={(e) => setEditedTeamName(e.target.value)}
                   placeholder="Nome da equipe"
                 />
                 <button onClick={handleSubmit}>Salvar</button>
