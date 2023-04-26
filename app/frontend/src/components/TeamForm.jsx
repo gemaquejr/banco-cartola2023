@@ -64,14 +64,27 @@ const TeamForm = () => {
     <div>
       <h2>Equipes</h2>
       <form onSubmit={handleSubmit}>
+        { editing ? (
         <input
           type="text"
           name="team_name"
           value={team.team_name}
           onChange={handleChange}
           placeholder="Nome da equipe"
+          hidden
         />
-        <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+        ) : (
+          <>
+            <input
+              type="text"
+              name="team_name"
+              value={team.team_name}
+              onChange={handleChange}
+              placeholder="Nome da equipe"
+            />
+            <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+          </>
+        )}
       </form>
       <ul>
         {teams.map((team) => (
