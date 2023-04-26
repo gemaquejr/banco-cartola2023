@@ -6,6 +6,9 @@ const CoachForm = () => {
   const [coaches, setCoaches] = useState([]);
   const [editing, setEditing] = useState(false);
   const [coachId, setCoachId] = useState(null);
+  const [editedCoachName, setEditedCoachName] = useState("");
+  const [editedCoachAge, setEditedCoachAge] = useState("");
+  const [editedCoachClub, setEditedCoachClub] = useState("");
 
   useEffect(() => {
     fetchCoaches();
@@ -30,7 +33,11 @@ const CoachForm = () => {
     e.preventDefault();
     try {
       if (editing) {
-        await putData(`/coaches/${coachId}`, coach);
+        await putData(`/coaches/${coachId}`, {
+          name: editedCoachName,
+          age: editedCoachAge,
+          club: editedCoachClub
+        });
       } else {
         await postData("/coaches", coach);
       }
@@ -38,6 +45,9 @@ const CoachForm = () => {
       setCoach({ name: "", age: "", club: "" });
       setEditing(false);
       setCoachId(null);
+      setEditedCoachName("");
+      setEditedCoachAge("");
+      setEditedCoachClub("");
     } catch (error) {
       console.error("Erro ao salvar treinador:", error);
     }
@@ -46,7 +56,9 @@ const CoachForm = () => {
   const handleEdit = (coach) => {
     setCoachId(coach.id);
     setEditing(true);
-    setCoach({ name: coach.name, age: coach.age, club: coach.club });
+    setEditedCoachName(coach.name);
+    setEditedCoachAge(coach.age);
+    setEditedCoachClub(coach.club);
   };
 
   const handleDelete = async (id) => {
@@ -62,35 +74,96 @@ const CoachForm = () => {
     <div>
       <h2>Treinadores</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          value={coach.name}
-          onChange={handleChange}
-          placeholder="Nome do treinador"
-        />
-        <input
-          type="number"
-          name="age"
-          value={coach.age}
-          onChange={handleChange}
-          placeholder="Idade do treinador"
-        />
-        <input
-          type="text"
-          name="club"
-          value={coach.club}
-          onChange={handleChange}
-          placeholder="Time do treinador"
-        />
-        <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+      { editing ? (
+        <>
+          <input
+            type="text"
+            name="name"
+            value={coach.name}
+            onChange={handleChange}
+            placeholder="Nome do treinador"
+            hidden
+          />
+          <input
+            type="number"
+            name="age"
+            value={coach.age}
+            onChange={handleChange}
+            placeholder="Idade do treinador"
+            hidden
+          />
+          <input
+            type="text"
+            name="club"
+            value={coach.club}
+            onChange={handleChange}
+            placeholder="Time do treinador"
+            hidden
+          />
+        </>
+        ) : (
+          <>
+            <input
+              type="text"
+              name="name"
+              value={coach.name}
+              onChange={handleChange}
+              placeholder="Nome do treinador"
+            />
+            <input
+              type="number"
+              name="age"
+              value={coach.age}
+              onChange={handleChange}
+              placeholder="Idade do treinador"
+            />
+            <input
+              type="text"
+              name="club"
+              value={coach.club}
+              onChange={handleChange}
+              placeholder="Time do treinador"
+            />
+            <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+          </>
+        )}
       </form>
       <ul>
         {coaches.map((coach) => (
           <li key={coach.id}>
-            {coach.name} - {coach.age} - {coach.club}
-            <button onClick={() => handleEdit(coach)}>Editar</button>
-            <button onClick={() => handleDelete(coach.id)}>Excluir</button>
+            {editing && coach.id === coachId ? (
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  value={editedCoachName}
+                  onChange={(e) => setEditedCoachName(e.target.value)}
+                  placeholder="Nome do treinador"
+                />
+                <input
+                  type="number"
+                  name="age"
+                  value={editedCoachAge}
+                  onChange={(e) => setEditedCoachAge(e.target.value)}
+                  placeholder="Idade do treinador"
+                />
+                <input
+                  type="text"
+                  name="club"
+                  value={editedCoachClub}
+                  onChange={(e) => setEditedCoachClub(e.target.value)}
+                  placeholder="Time do treinador"
+                />
+                <button onClick={handleSubmit}>Salvar</button>
+                <button onClick={() => setEditing(false)}>Cancelar</button>
+              </div>
+            ) : (
+              <div>
+                {coach.name} - {coach.age} - {coach.club}
+                <button onClick={() => handleEdit(coach)}>Editar</button>
+                <button onClick={() => handleDelete(coach.id)}>Excluir</button>
+              </div>
+              )}
           </li>
         ))}
       </ul>
