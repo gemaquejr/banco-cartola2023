@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { requestData, postData, putData, deleteData } from '../services/requests';
 
+import Button from "./Button/Button";
+
 const CoachForm = () => {
   const [coach, setCoach] = useState({ name: "", age: "", club: "" });
   const [coaches, setCoaches] = useState([]);
@@ -124,7 +126,7 @@ const CoachForm = () => {
               onChange={handleChange}
               placeholder="Time do treinador"
             />
-            <button type="submit">{editing ? "Editar" : "Adicionar"}</button>
+            <Button type="submit" onClick={handleSubmit} label={editing ? "Editar" : "Adicionar"} />
           </>
         )}
       </form>
@@ -154,14 +156,14 @@ const CoachForm = () => {
                   onChange={(e) => setEditedCoachClub(e.target.value)}
                   placeholder="Time do treinador"
                 />
-                <button onClick={handleSubmit}>Salvar</button>
-                <button onClick={() => setEditing(false)}>Cancelar</button>
+                <Button onClick={handleSubmit} label="Salvar" />
+                <Button onClick={() => setEditing(false)} label="Cancelar" />
               </div>
             ) : (
               <div>
                 {coach.name} - {coach.age} - {coach.club}
-                <button onClick={() => handleEdit(coach)}>Editar</button>
-                <button onClick={() => handleDelete(coach.id)}>Excluir</button>
+                <Button onClick={() => handleEdit(coach)} label="Editar" />
+                <Button onClick={() => handleDelete(coach.id)} label="Excluir" />
               </div>
               )}
           </li>
