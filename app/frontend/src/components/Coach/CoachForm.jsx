@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { requestData, postData, putData, deleteData } from '../services/requests';
+import { requestData, postData, putData, deleteData } from '../../services/requests';
 
-import Button from "./Button/Button";
+import Button from "../Button/Button";
+import styles from './CoachForm.module.css';
 
 const CoachForm = () => {
   const [coach, setCoach] = useState({ name: "", age: "", club: "" });
@@ -104,7 +105,7 @@ const CoachForm = () => {
           />
         </>
         ) : (
-          <>
+          <div className={styles.container_coach}>
             <input
               type="text"
               name="name"
@@ -126,13 +127,15 @@ const CoachForm = () => {
               onChange={handleChange}
               placeholder="Time do treinador"
             />
-            <Button type="submit" onClick={handleSubmit} label={editing ? "Editar" : "Adicionar"} />
-          </>
+            <div className={styles.nav_buttons}>
+              <Button type="submit" onClick={handleSubmit} label={editing ? "Editar" : "Adicionar"} />
+            </div>
+          </div>
         )}
       </form>
-      <ul>
+      <>
         {coaches.map((coach) => (
-          <li key={coach.id}>
+          <div key={coach.id}>
             {editing && coach.id === coachId ? (
               <div>
                 <input
@@ -156,19 +159,23 @@ const CoachForm = () => {
                   onChange={(e) => setEditedCoachClub(e.target.value)}
                   placeholder="Time do treinador"
                 />
-                <Button onClick={handleSubmit} label="Salvar" />
-                <Button onClick={() => setEditing(false)} label="Cancelar" />
+                <div className={styles.nav_buttons}>
+                  <Button onClick={handleSubmit} label="Salvar" />
+                  <Button onClick={() => setEditing(false)} label="Cancelar" />
+                </div>
               </div>
             ) : (
               <div>
                 {coach.name} - {coach.age} - {coach.club}
-                <Button onClick={() => handleEdit(coach)} label="Editar" />
-                <Button onClick={() => handleDelete(coach.id)} label="Excluir" />
+                <div className={styles.nav_buttons}>
+                  <Button onClick={() => handleEdit(coach)} label="Editar" />
+                  <Button onClick={() => handleDelete(coach.id)} label="Excluir" />
+                </div>
               </div>
               )}
-          </li>
+          </div>
         ))}
-      </ul>
+      </>
     </div>
   );
 };

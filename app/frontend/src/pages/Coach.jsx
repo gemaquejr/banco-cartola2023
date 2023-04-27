@@ -1,5 +1,5 @@
 import React from "react";
-import CoachForm from "../components/CoachForm";
+import CoachForm from "../components/Coach/CoachForm";
 
 const CoachPage = () => {
   return (

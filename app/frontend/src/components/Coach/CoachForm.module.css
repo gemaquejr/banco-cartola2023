@@ -1,0 +1,27 @@
+.container_coach {
+    background: #bbb2b0;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 30px;
+    -webkit-box-shadow: 5px 5px 10px 0px rgba(115,105,115,1);
+    -moz-box-shadow: 5px 5px 10px 0px rgba(115,105,115,1);
+    box-shadow: 5px 5px 10px 0px rgba(115,105,115,1);
+    width: 40vw;
+    min-height: 25vh;  
+    font-weight: bold;
+}
+
+input {
+    height: 30px;
+    width: 100%;
+    border-radius: 10px;
+
+}
+
+.nav_buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
