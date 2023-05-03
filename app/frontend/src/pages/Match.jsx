@@ -6,7 +6,6 @@ const MatchPage = () => {
   return (
     <div>
       <Header />
-      <h1>Confronto</h1>
       <MatchForm />
     </div>
   );
