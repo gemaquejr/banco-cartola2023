@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { requestData, postData, putData, deleteData } from '../services/requests';
+import { requestData, postData, putData, deleteData } from '../../services/requests';
 
-import Button from "./Button/Button";
+import Button from "../Button/Button";
 
 const MatchForm = () => {
   const [match, setMatch] = useState({ home_team: "", home_score: "", away_team: "", away_score: "", date: "", stadium: "" });
@@ -184,7 +184,7 @@ const MatchForm = () => {
             onChange={handleChange}
             placeholder="Local do confronto"
           />
-            <Button type="submit" label={editing ? "Editar" : "Adicionar"} />
+            <Button type="submit" onClick={handleSubmit} label={editing ? "Editar" : "Adicionar"} />
           </>
         )}
       </form>
