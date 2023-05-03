@@ -1,10 +1,11 @@
 import React from "react";
-import PlayerForm from "../components/PlayerForm";
+import PlayerForm from "../components/Player/PlayerForm";
+import Header from "../components/Header/Header";
 
 const PlayerPage = () => {
   return (
     <div>
-      <h1>Jogadores</h1>
+      <Header />
       <PlayerForm />
     </div>
   );
