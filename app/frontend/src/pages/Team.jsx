@@ -1,10 +1,11 @@
 import React from "react";
-import TeamForm from "../components/TeamForm";
+import TeamForm from "../components/Team/TeamPost";
+import Header from "../components/Header/Header";
 
 const TeamPage = () => {
   return (
     <div>
-      <h1>Times</h1>
+      <Header />
       <TeamForm />
     </div>
   );
