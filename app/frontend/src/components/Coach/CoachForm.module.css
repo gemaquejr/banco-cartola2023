@@ -1,4 +1,21 @@
-.container_coach {
+.container_content {
+    background-color: green;
+    width: 720px;
+    padding: 20px;
+    margin: 20px auto 0 auto;
+    box-shadow: 0px 6px 10px;
+    border-radius: 5px;
+}
+
+fieldset {
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-color: #c2cbce;
+    box-shadow: 2px 2px 2px #c2cbce;
+}
+
+/* .container_coach {
     background: #bbb2b0;
     margin-bottom: 20px;
     padding: 10px;
@@ -9,13 +26,17 @@
     width: 40vw;
     min-height: 25vh;  
     font-weight: bold;
-}
+} */
 
-input {
+#coach_input {
     height: 30px;
     width: 100%;
     border-radius: 10px;
 
+}
+
+.coach_row {
+    padding: 5px;
 }
 
 .nav_buttons {
