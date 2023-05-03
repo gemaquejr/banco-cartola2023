@@ -1,5 +1,5 @@
 import React from "react";
-import MatchForm from "../components/MatchForm";
+import MatchForm from "../components/Match/MatchForm";
 import Header from "../components/Header/Header";
 
 const MatchPage = () => {
