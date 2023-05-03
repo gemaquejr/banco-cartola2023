@@ -1,10 +1,12 @@
 import React from "react";
-import RoundForm from "../components/RoundForm";
+import RoundForm from "../components/Round/RoundForm";
+import Header from "../components/Header/Header";
+
 
 const RoundPage = () => {
   return (
     <div>
-      <h1>Rodada</h1>
+      <Header />
       <RoundForm />
     </div>
   );
