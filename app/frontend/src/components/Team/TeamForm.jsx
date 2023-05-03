@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { requestData, postData, putData, deleteData } from '../services/requests';
+import { requestData, postData, putData, deleteData } from '../../services/requests';
 
-import Button from "./Button/Button";
+import Button from "../Button/Button";
 
 const TeamForm = () => {
   const [team, setTeam] = useState({ team_name: "" });
