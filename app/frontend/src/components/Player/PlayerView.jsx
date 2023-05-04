@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { requestData } from '../../services/requests';
 
+import './PlayerView.css';
+
 const PlayerForm = () => {
   const [players, setPlayers] = useState([]);
 
@@ -19,9 +21,9 @@ const PlayerForm = () => {
   };
 
   return (
-    <div>
-      <h2>Jogadores</h2>
-      <table>
+    <div className="table-container">
+      <h2 className="heading">Jogadores</h2>
+      <table className="table">
         <thead>
           <tr>
             <th>Nome</th>
@@ -34,11 +36,11 @@ const PlayerForm = () => {
         <tbody>
           {players.map((player) => (
             <tr key={player.id}>
-              <td>{player.name}</td>
-              <td>{player.age}</td>
-              <td>{player.club}</td>
-              <td>{player.position}</td>
-              <td>{player.starter ? "Sim" : "Não"}</td>
+              <td data-label="Nome">{player.name}</td>
+              <td data-label="Idade">{player.age}</td>
+              <td data-label="Time">{player.club}</td>
+              <td data-label="Posição">{player.position}</td>
+              <td data-label="Titular">{player.starter ? "Sim" : "Não"}</td>
             </tr>
           ))}
         </tbody>
