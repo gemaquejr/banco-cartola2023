@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { requestData, postData } from '../../services/requests';
 
+import './PlayerPost.css';
+
 import Button from "../Button/Button";
 
 const PlayerForm = () => {
