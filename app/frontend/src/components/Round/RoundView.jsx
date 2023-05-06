@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { requestData } from '../../services/requests';
 
+import './RoundView.css';
+
 const RoundView = () => {
   const [rounds, setRounds] = useState([]);
 
@@ -19,8 +21,9 @@ const RoundView = () => {
   };
 
   return (
-    <div>
-      <table>
+    <div className="table-container">
+      <h2 className="heading">Rodada</h2>
+      <table className="table">
         <thead>
           <tr>
             <th>Rodada</th>
