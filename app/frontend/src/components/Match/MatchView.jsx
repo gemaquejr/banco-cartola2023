@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { requestData } from '../../services/requests';
 
+import './MatchView.css';
+
 const MatchForm = () => {
   const [matches, setMatches] = useState([]);
 
@@ -19,9 +21,9 @@ const MatchForm = () => {
   };
   
   return (
-    <div>
-      <h2>Confrontos</h2>
-      <table>
+    <div className="table-container">
+      <h2 className="heading">Confrontos</h2>
+      <table className="table">
         <thead>
           <tr>
             <th>Mandante</th>
