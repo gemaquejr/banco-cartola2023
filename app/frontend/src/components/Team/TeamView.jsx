@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { requestData } from '../../services/requests';
 
+import './TeamView.css';
+
 const TeamView = () => {
   const [teams, setTeams] = useState([]);
 
@@ -19,8 +21,9 @@ const TeamView = () => {
   };
 
   return (
-    <div>
-      <table>
+    <div className="table-container">
+      <h2 className="heading">Times</h2>
+      <table className="table">
         <thead>
           <tr>
             <th>Time</th>
