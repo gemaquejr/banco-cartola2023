@@ -28,8 +28,9 @@ const MatchForm = () => {
           <tr>
             <th>Mandante</th>
             <th>Gols Mandante</th>
-            <th>Visitante</th>
+            <th></th>
             <th>Gols Visitante</th>
+            <th>Visitante</th>
             <th>Data</th>
             <th>Estádio</th>
           </tr>
@@ -39,8 +40,9 @@ const MatchForm = () => {
             <tr key={match.id}>
               <td>{match.home_team}</td>
               <td>{match.home_score}</td>
-              <td>{match.away_team}</td>
+              <td>X</td>
               <td>{match.away_score}</td>
+              <td>{match.away_team}</td>
               <td>{match.date}</td>
               <td>{match.stadium}</td>
             </tr>
