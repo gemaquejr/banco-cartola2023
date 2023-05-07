@@ -1,3 +1,8 @@
+.table-container {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
 .heading {
   font-size: 50px;
   text-align: center;
