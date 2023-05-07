@@ -19,9 +19,9 @@ const CoachView = () => {
   };
 
   return (
-    <div>
-      <h2>Treinadores</h2>
-      <table>
+    <div className="table-container">
+      <h2 className="heading">Treinadores</h2>
+      <table className="table">
         <thead>
           <tr>
             <th>Nome</th>
