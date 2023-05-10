@@ -63,3 +63,5 @@ timestamps: false,
 });
 
 Match.belongsTo(Round, { foreignKey: 'round_id' });
+
+export default Match;
