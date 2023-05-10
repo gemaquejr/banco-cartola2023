@@ -50,10 +50,6 @@ Match.init({
     round_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'rounds',
-        key: 'id'
-      }
     }
 }, {
 underscored: true,
