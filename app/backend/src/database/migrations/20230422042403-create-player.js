@@ -17,10 +17,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      club: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       position: {
         type: Sequelize.STRING,
         allowNull: false,
