@@ -30,10 +30,6 @@ Coach.init({
     team_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'teams',
-        key: 'id'
-      }
     }
 }, {
 underscored: true,
