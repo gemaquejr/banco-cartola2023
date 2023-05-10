@@ -34,7 +34,7 @@ const CoachView = () => {
             <tr key={coach.id}>
               <td>{coach.name}</td>
               <td>{coach.age}</td>
-              <td>{coach.club}</td>
+              <td>{coach.team?.team_name}</td>
             </tr>
           ))}
         </tbody>
