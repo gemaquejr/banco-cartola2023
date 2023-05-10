@@ -5,7 +5,7 @@ module.exports = {
     const rounds = [
       {
         number: 1,
-        matches: 2,
+        name: "Primeira Rodada",
         createdAt: new Date(),
         updatedAt: new Date()
       },
