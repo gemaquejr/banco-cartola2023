@@ -2,6 +2,13 @@
 
 module.exports = {
   up: async (queryInterface, _Sequelize) => {
+
+    const round = await queryInterface.rawSelect('rounds', {
+      where: {
+        name: 'Primeira Rodada'
+      }
+    }, ['id']);
+
     const matches = [
       {
         home_team: 'Remo',
@@ -10,6 +17,7 @@ module.exports = {
         away_score: 0,
         date: '22-04-2023',
         stadium: 'Mangueirão',
+        round_id: round,
         createdAt: new Date(),
         updatedAt: new Date()
       },
