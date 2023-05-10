@@ -34,7 +34,7 @@ const RoundView = () => {
           {rounds.map((round) => (
             <tr key={round.id}>
               <td>{round.number}</td>
-              <td>{round.matches}</td>
+              <td>{round.name}</td>
             </tr>
           ))}
         </tbody>
