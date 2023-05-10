@@ -33,6 +33,7 @@ const MatchForm = () => {
             <th>Visitante</th>
             <th>Data</th>
             <th>Estádio</th>
+            <th>Rodada</th>
           </tr>
         </thead>
         <tbody>
@@ -45,6 +46,7 @@ const MatchForm = () => {
               <td>{match.away_team}</td>
               <td>{match.date}</td>
               <td>{match.stadium}</td>
+              <td>{match.round?.name}</td>
             </tr>
           ))}
         </tbody>
