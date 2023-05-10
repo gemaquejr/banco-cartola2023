@@ -1,11 +1,13 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
 
+import Team from './team';
+
 class Coach extends Model {
   public id!: number;
   public name!: string;
   public age!: number;
-  public club!: string;
+  public teamId!: number;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -25,15 +27,21 @@ Coach.init({
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    club: {
-      type: DataTypes.STRING(100),
+    team_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    },
+      references: {
+        model: 'teams',
+        key: 'id'
+      }
+    }
 }, {
 underscored: true,
 sequelize: db,
 modelName: 'coaches',
 timestamps: false,
 });
+
+Coach.belongsTo(Team, { foreignKey: 'team_id' });
 
 export default Coach;
