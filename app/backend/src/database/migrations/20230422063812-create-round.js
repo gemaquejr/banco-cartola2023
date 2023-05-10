@@ -12,8 +12,8 @@ module.exports = {
       number: {
         type: Sequelize.INTEGER
       },
-      matches: {
-        type: Sequelize.INTEGER
+      name: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
