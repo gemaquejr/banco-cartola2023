@@ -1,13 +1,15 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
 
+import Team from './team';
+
 class Player extends Model {
   public id!: number;
   public name!: string;
   public age!: number;
-  public club!: string;
   public position!: string;
   public starter!: string;
+  public teamId!: number;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -27,10 +29,6 @@ Player.init({
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    club: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-    },
     position: {
       type: DataTypes.STRING(100),
       allowNull: false,
@@ -39,11 +37,17 @@ Player.init({
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
+    team_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
 }, {
 underscored: true,
 sequelize: db,
 modelName: 'players',
 timestamps: false,
 });
+
+Player.belongsTo(Team, { foreignKey: 'team_id' });
 
 export default Player;
