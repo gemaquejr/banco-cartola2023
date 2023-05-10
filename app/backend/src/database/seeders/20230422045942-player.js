@@ -2,13 +2,20 @@
 
 module.exports = {
   up: async (queryInterface, _Sequelize) => {
+
+    const team = await queryInterface.rawSelect('teams', {
+      where: {
+        team_name: 'Remo'
+      }
+    }, ['id']);
+
     const players = [
       {
         name: 'Jogador 1',
         age: 25,
-        club: 'Remo',
         position: 'Atacante',
         starter: true,
+        team_id: team,
         createdAt: new Date(),
         updatedAt: new Date()
       },
