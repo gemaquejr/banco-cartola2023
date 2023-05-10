@@ -38,7 +38,7 @@ const PlayerForm = () => {
             <tr key={player.id}>
               <td data-label="Nome">{player.name}</td>
               <td data-label="Idade">{player.age}</td>
-              <td data-label="Time">{player.club}</td>
+              <td data-label="Time">{player.team?.team_name}</td>
               <td data-label="Posição">{player.position}</td>
               <td data-label="Titular">{player.starter ? "Sim" : "Não"}</td>
             </tr>
