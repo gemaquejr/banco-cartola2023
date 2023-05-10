@@ -4,7 +4,7 @@ import db from '.';
 class Round extends Model {
   public id!: number;
   public number!: number;
-  public matches!: number;
+  public name!: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -20,8 +20,8 @@ Round.init({
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    matches: {
-      type: DataTypes.INTEGER,
+    name: {
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
 }, {
