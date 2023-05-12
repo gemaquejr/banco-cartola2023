@@ -27,12 +27,22 @@ const TeamView = () => {
         <thead>
           <tr>
             <th>Time</th>
+            <th>Logo</th>
           </tr>
         </thead>
         <tbody>
           {teams.map((team) => (
             <tr key={team.id}>
               <td>{team.team_name}</td>
+              <td>
+                {team.logo_url && (
+                  <img
+                    src={team.logo_url}
+                    alt={`Logo do ${team.team_name}`}
+                    className="team-logo"
+                  />
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
