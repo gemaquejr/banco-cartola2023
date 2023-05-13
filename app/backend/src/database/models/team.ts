@@ -4,6 +4,7 @@ import db from '.';
 class Team extends Model {
   public id!: number;
   public teamName!: string;
+  public logoName!: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -16,6 +17,10 @@ Team.init({
       primaryKey: true,
     },
     team_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    logo_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
