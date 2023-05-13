@@ -35,9 +35,9 @@ const TeamView = () => {
             <tr key={team.id}>
               <td>{team.team_name}</td>
               <td>
-                {team.logo_url && (
+                {team.logo_name && (
                   <img
-                    src={team.logo_url}
+                    src={require(`../../assets/${team.logo_name}`)}
                     alt={`Logo do ${team.team_name}`}
                     className="team-logo"
                   />
