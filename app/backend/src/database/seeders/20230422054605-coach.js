@@ -5,14 +5,14 @@ module.exports = {
 
     const team = await queryInterface.rawSelect('teams', {
       where: {
-        team_name: 'Remo'
+        team_name: 'Flamengo'
       }
     }, ['id']);
 
     const coaches = [
       {
-        name: 'Givanildo Oliveira',
-        age: 52,
+        name: 'Jorge Luis Sampaoli Moya',
+        age: 63,
         team_id: team,
         createdAt: new Date(),
         updatedAt: new Date()
