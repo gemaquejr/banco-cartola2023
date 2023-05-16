@@ -5,7 +5,7 @@ import Team from './team';
 
 class Stadium extends Model {
   public id!: number;
-  public name!: string;
+  public stadiumName!: string;
   public teamId!: number;
 
   public readonly createdAt!: Date;
@@ -18,14 +18,20 @@ Stadium.init({
     autoIncrement: true,
     primaryKey: true,
   },
-  name: {
+  stadium_name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
   team_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-  }
+    references: {
+      model: 'teams',
+      key: 'id',
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
+  },
 }, {
   underscored: true,
   sequelize: db,
