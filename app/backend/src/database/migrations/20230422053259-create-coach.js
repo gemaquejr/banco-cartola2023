@@ -17,6 +17,16 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      team_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'teams',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
