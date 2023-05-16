@@ -6,9 +6,6 @@ import Match from './pages/Match';
 import Player from './pages/Player';
 import Round from './pages/Round';
 
-import './Reset.css'
-import './App.css';
-
 function App() {
   return (
     <Routes>
