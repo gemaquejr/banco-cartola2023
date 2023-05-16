@@ -27,7 +27,7 @@ const TeamView = () => {
         <thead>
           <tr>
             <th>Time</th>
-            <th>Logo</th>
+            <th>Escudo</th>
           </tr>
         </thead>
         <tbody>
