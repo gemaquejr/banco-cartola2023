@@ -10,7 +10,6 @@ class Match extends Model {
   public homeScore!: number;
   public awayScore!: number;
   public date!: string;
-  public stadium!: string;
   public roundId!: number;
 
   public readonly createdAt!: Date;
@@ -43,14 +42,10 @@ Match.init({
       type: DataTypes.STRING(100),
       allowNull: false,
     },
-    stadium: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-    },
     round_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    }
+    },
 }, {
 underscored: true,
 sequelize: db,
