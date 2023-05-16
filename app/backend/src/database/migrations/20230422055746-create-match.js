@@ -24,8 +24,25 @@ module.exports = {
       date: {
         type: Sequelize.STRING
       },
-      stadium: {
-        type: Sequelize.STRING
+      round_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'rounds',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      stadium_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'stadiums',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
