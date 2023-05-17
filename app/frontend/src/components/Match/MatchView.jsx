@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { requestData } from '../../services/requests';
 
-import './MatchView.css';
+  import styles from './MatchView.module.css';
 
 const MatchForm = () => {
   const [matches, setMatches] = useState([]);
@@ -21,36 +21,31 @@ const MatchForm = () => {
   };
   
   return (
-    <div className="table-container">
-      <h2 className="heading">Confrontos</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Mandante</th>
-            <th>Gols Mandante</th>
-            <th></th>
-            <th>Gols Visitante</th>
-            <th>Visitante</th>
-            <th>Data</th>
-            <th>Estádio</th>
-            <th>Rodada</th>
-          </tr>
-        </thead>
-        <tbody>
-          {matches.map((match) => (
-            <tr key={match.id}>
-              <td>{match.home_team}</td>
-              <td>{match.home_score}</td>
-              <td>X</td>
-              <td>{match.away_score}</td>
-              <td>{match.away_team}</td>
-              <td>{match.date}</td>
-              <td>{match.stadium}</td>
-              <td>{match.round?.name}</td>
-            </tr>
+    <div className={styles.container_matchview}>
+      <div className={styles.table_container}>
+        <div className={styles.table_cabecalho}>
+          <div>Mandante</div>
+          <div>Placar</div>
+          <div>Visitante</div>
+          <div>Data</div>
+          <div>Estádio</div>
+          <div>Rodada</div>
+        </div>
+        {matches.map((match) => (
+          <div className={styles.row} key={match.id}>
+              <div className={styles.home_team}>{match.home_team}</div>
+              <div className={styles.score}>
+                <span>{match.home_score}</span>
+                <span>X</span>
+                <span>{match.away_score}</span>
+              </div>
+              <div className={styles.away_team}>{match.away_team}</div>
+              <div className={styles.date}>{match.date}</div>
+              <div className={styles.stadium}>{match.stadium?.stadium_name}</div>
+              <div className={styles.round}>{match.round?.name}</div>
+            </div>
           ))}
-        </tbody>
-      </table>
+      </div>
     </div>
   );
 };
