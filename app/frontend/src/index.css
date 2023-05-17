@@ -30,7 +30,7 @@ p {
 }
 
 .container_match {
-    background: tomato;
+    background: #e3dfdf;
     width: 100vw;
     max-width: 100%;
     min-height: 100vh;
