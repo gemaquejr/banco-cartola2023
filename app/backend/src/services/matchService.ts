@@ -1,6 +1,7 @@
 import { Op } from 'sequelize';
 import Match from '../database/models/match';
 import Round from '../database/models/round';
+import Stadium from '../database/models/stadium';
 
 export default class MatchService {
   public matchModel = Match;
@@ -12,7 +13,7 @@ export default class MatchService {
 
   public async getAllMatches() {
     const matches = await this.matchModel.findAll({
-      include: [Round],
+      include: [Round, Stadium],
       order: [['date', 'ASC']],
     });
     return matches;
@@ -20,19 +21,19 @@ export default class MatchService {
 
   public async getMatchById(matchId: number) {
     const match = await this.matchModel.findByPk(matchId, {
-      include: [Round],
+      include: [Round, Stadium],
     });
     return match
   }
 
-  public async getMatchesByRound(roundId: number) {
+  public async getMatchesByRound(roundId: number, stadiumId: number) {
     const matches = await this.matchModel.findAll({
       where: {
         roundId: {
-          [Op.eq]: roundId,
+          [Op.eq]: roundId, stadiumId,
         },
       },
-      include: [Round],
+      include: [Round, Stadium],
     });
     return matches;
   }
