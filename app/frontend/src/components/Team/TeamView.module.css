@@ -1,0 +1,65 @@
+.container_teamview {
+  width: 80vw;
+  margin: auto;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.table_cabecalho, .row {
+  width: 100%;
+  padding: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  text-align: center;
+}
+
+.table_cabecalho {
+  background: darkblue;
+  color: white;
+}
+
+.table_container > .row:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.team_logo {
+  max-width: 25px;
+  max-height: 25px;
+}
+
+@media screen and (max-width: 768px) {
+  .table_cabecalho {
+      display: none;
+  }
+
+  .row {
+      display: flex;
+      flex-direction: column;
+      padding-left: 110px;
+      justify-content: space-around;
+  }
+
+  .logo, .shield {
+      position: relative;
+  }
+
+  .logo:before, .shield:before {
+      font-weight: bold;
+      position: absolute;
+      margin-left: -110px;
+  }
+
+  .logo:before {
+    width: 150px;
+    content:"time ";
+  }
+
+  .shield:before {
+      width: 150px;
+      content:"escudo ";
+  }
+}
