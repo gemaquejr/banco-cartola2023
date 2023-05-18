@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { requestData } from '../../services/requests';
 
-  import styles from './MatchView.module.css';
+import styles from './MatchView.module.css';
 
 const MatchForm = () => {
   const [matches, setMatches] = useState([]);
