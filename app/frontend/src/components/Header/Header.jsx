@@ -1,23 +1,24 @@
 import React from 'react';
-import styles from './Header.module.css';
+import './Header.css';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
   return (
     <header>
       <nav>
-        <input className={styles.nav_toggle} id="nav-toggle" type="checkbox" />
-        <div className={styles.logo}><strong>Cartola 2023</strong></div>
-        <ul className={styles.links}>
-          <li><a href="teams">Times</a></li>
-          <li><a href="players">Jogadores</a></li>
-          <li><a href="coaches">Técnicos</a></li>
-          <li><a href="rounds">Rodada</a></li>
-          <li><a href="matches">Confrontos</a></li>
+        <input className="nav_toggle" id="nav-toggle" type="checkbox" />
+        <div className="logo"><strong>Cartola 2023</strong></div>
+        <ul className="links">
+          <li><NavLink to="/teams">Times</NavLink></li>
+          <li><NavLink to="/players">Jogadores</NavLink></li> 
+          <li><NavLink to="/coaches">Treinadores</NavLink></li> 
+          <li><NavLink to="/rounds">Rodada</NavLink></li> 
+          <li><NavLink to="/matches">Confronto</NavLink></li>        
         </ul>
-        <label htmlFor="nav-toggle" className={styles['icon-burger']}>
-          <div className={styles.line}></div>
-          <div className={styles.line}></div>
-          <div className={styles.line}></div>
+        <label htmlFor="nav-toggle" className="icon-burger">
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
         </label>
       </nav>
     </header>
