@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { requestData } from '../../services/requests';
 
-import './TeamView.css';
+import styles from './TeamView.module.css';
 
 const TeamView = () => {
   const [teams, setTeams] = useState([]);
@@ -21,32 +21,25 @@ const TeamView = () => {
   };
 
   return (
-    <div className="table-container">
-      <h2 className="heading">Times</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Escudo</th>
-          </tr>
-        </thead>
-        <tbody>
-          {teams.map((team) => (
-            <tr key={team.id}>
-              <td>{team.team_name}</td>
-              <td>
-                {team.logo_name && (
-                  <img
-                    src={require(`../../assets/${team.logo_name}`)}
-                    alt={`Logo do ${team.team_name}`}
-                    className="team-logo"
-                  />
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className={styles.container_teamview}>
+      <div className={styles.table_container}>
+        <div className={styles.table_cabecalho}>
+          <div>Time</div>
+          <div>Escudo</div>
+        </div>
+        {teams.map((team) => (
+          <div className={styles.row} key={team.id}>
+            <div className={styles.logo}>{team.team_name}</div>
+            <div className={styles.shield}>
+                <img
+                  className={styles.team_logo}
+                  src={require(`../../assets/${team.logo_name}`)}
+                  alt={`Logo do ${team.team_name}`}
+                />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
