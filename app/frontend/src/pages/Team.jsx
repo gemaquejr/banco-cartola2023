@@ -1,5 +1,5 @@
 import React from "react";
-import TeamForm from "../components/Team/TeamPost";
+import TeamForm from "../components/Team/TeamView";
 import Header from "../components/Header/Header";
 
 const TeamPage = () => {
