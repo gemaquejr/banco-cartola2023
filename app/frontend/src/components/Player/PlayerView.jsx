@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { requestData } from '../../services/requests';
 
-import './PlayerView.css';
+import styles from './PlayerView.module.css';
 
 const PlayerForm = () => {
   const [players, setPlayers] = useState([]);
@@ -21,32 +21,27 @@ const PlayerForm = () => {
   };
 
   return (
-    <div className="table-container">
-      <h2 className="heading">Jogadores</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Time</th>
-            <th>Posição</th>
-            <th>Titular</th>
-          </tr>
-        </thead>
-        <tbody>
-          {players.map((player) => (
-            <tr key={player.id}>
-              <td data-label="Nome">{player.name}</td>
-              <td data-label="Idade">{player.age}</td>
-              <td data-label="Time">{player.team?.team_name}</td>
-              <td data-label="Posição">{player.position}</td>
-              <td data-label="Titular">{player.starter ? "Sim" : "Não"}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className={styles.container_matchview}>
+      <div className={styles.table_container}>
+        <div className={styles.table_cabecalho}>
+          <div>Nome</div>
+          <div>Idade</div>
+          <div>Time</div>
+          <div>Posição</div>
+          <div>Titular</div>
+        </div>
+        {players.map((player) => (
+          <div className={styles.row} key={player.id}>
+            <div data-label="Nome">{player.name}</div>
+            <div data-label="Idade">{player.age}</div>
+            <div data-label="Time">{player.team?.team_name}</div>
+            <div data-label="Posição">{player.position}</div>
+            <div data-label="Titular">{player.starter ? "Sim" : "Não"}</div>
+          </div>
+        ))}
     </div>
-  );
+  </div>
+ );
 };
 
 export default PlayerForm;
