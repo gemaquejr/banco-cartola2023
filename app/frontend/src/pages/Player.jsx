@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 
 const PlayerPage = () => {
   return (
-    <div>
+    <div className="container_match">
       <Header />
       <PlayerForm />
     </div>
