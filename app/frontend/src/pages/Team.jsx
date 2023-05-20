@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 
 const TeamPage = () => {
   return (
-    <div>
+    <div className="container_match">
       <Header />
       <TeamForm />
     </div>
