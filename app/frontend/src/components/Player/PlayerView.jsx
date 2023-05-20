@@ -21,7 +21,7 @@ const PlayerForm = () => {
   };
 
   return (
-    <div className={styles.container_matchview}>
+    <div className={styles.container_playerview}>
       <div className={styles.table_container}>
         <div className={styles.table_cabecalho}>
           <div>Nome</div>
