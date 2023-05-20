@@ -32,11 +32,11 @@ const PlayerForm = () => {
         </div>
         {players.map((player) => (
           <div className={styles.row} key={player.id}>
-            <div data-label="Nome">{player.name}</div>
-            <div data-label="Idade">{player.age}</div>
-            <div data-label="Time">{player.team?.team_name}</div>
-            <div data-label="Posição">{player.position}</div>
-            <div data-label="Titular">{player.starter ? "Sim" : "Não"}</div>
+            <div className={styles.name}>{player.name}</div>
+            <div className={styles.age}>{player.age}</div>
+            <div className={styles.team}>{player.team?.team_name}</div>
+            <div className={styles.position}>{player.position}</div>
+            <div className={styles.starter}>{player.starter ? "Sim" : "Não"}</div>
           </div>
         ))}
     </div>
