@@ -14,7 +14,7 @@ export default class MatchService {
   public async getAllMatches() {
     const matches = await this.matchModel.findAll({
       include: [Round, Stadium],
-      order: [['date', 'ASC']],
+      order: [['round_id', 'ASC']],
     });
     return matches;
   }
