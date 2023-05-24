@@ -11,6 +11,7 @@ class Match extends Model {
   public homeScore!: number;
   public awayScore!: number;
   public date!: string;
+  public inProgress!: boolean;
   public roundId!: number;
   public stadiumId!: number;
 
@@ -42,6 +43,10 @@ Match.init({
     },
     date: {
       type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    inProgress: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     round_id: {
