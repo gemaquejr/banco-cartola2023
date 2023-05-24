@@ -5,8 +5,8 @@ export default class StadiumController {
     constructor(private stadiumService = new StadiumService()) { }
 
     async createStadium(req: Request, res: Response) {
+        const stadiumData = req.body;
         try {
-            const stadiumData = req.body;
             const createdStadium = await this.stadiumService.createStadium(stadiumData);
             return res.status(201).json(createdStadium);
         } catch (err) {
@@ -26,9 +26,8 @@ export default class StadiumController {
     }
 
     async getStadiumById(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
-            
+        const { id } = req.params;
+        try {            
             const stadium = await this.stadiumService.getStadiumById(Number(id));
             return res.status(200).json(stadium);
         } catch (err) {
@@ -38,10 +37,9 @@ export default class StadiumController {
     }
 
     async updateStadiumById(req: Request, res: Response) {
+        const { id } = req.params;
+        const updatedStadiumData = req.body;
         try {
-            const { id } = req.params;
-            const updatedStadiumData = req.body;
-
             const stadium = await this.stadiumService.updateStadiumById(Number(id), updatedStadiumData);
             return res.status(200).json(stadium);
         } catch (err) {
@@ -51,9 +49,8 @@ export default class StadiumController {
     }
 
     async deleteStadiumById(req: Request, res: Response) {
+        const { id } = req.params;
         try {
-            const { id } = req.params;
-
             const deletedStadium = await this.stadiumService.deleteStadiumById(Number(id));
             return res.status(200).json(deletedStadium);
         } catch (err) {
