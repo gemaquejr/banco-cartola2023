@@ -5,8 +5,8 @@ export default class RoundController {
     constructor(private roundService = new RoundService()) {}
 
     async createRound(req: Request, res: Response) {
+        const roundData = req.body;
         try {
-            const roundData = req.body;
             const createdRound = await this.roundService.createRound(roundData);
             return res.status(201).json(createdRound);
         } catch (err) {
@@ -26,9 +26,8 @@ export default class RoundController {
     }
 
     async getRoundById(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
-            
+        const { id } = req.params;
+        try {            
             const round = await this.roundService.getRoundById(Number(id));
             return res.status(200).json(round);
         } catch (err) {
@@ -38,10 +37,9 @@ export default class RoundController {
     }
 
     async updateRoundById(req: Request, res: Response) {
+        const { id } = req.params;
+        const updatedRoundData = req.body;
         try {
-            const { id } = req.params;
-            const updatedRoundData = req.body;
-
             const round = await this.roundService.updateRoundById(Number(id), updatedRoundData);
             return res.status(200).json(round);
         } catch (err) {
@@ -51,9 +49,8 @@ export default class RoundController {
     }
 
     async deleteRoundById(req: Request, res: Response) {
+        const { id } = req.params;
         try {
-            const { id } = req.params;
-
             const deletedRound = await this.roundService.deleteRoundById(Number(id));
             return res.status(200).json(deletedRound);
         } catch (err) {
