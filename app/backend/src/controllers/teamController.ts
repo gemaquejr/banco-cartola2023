@@ -5,8 +5,8 @@ export default class TeamController {
     constructor(private teamService = new TeamService()) {}
 
     async createTeam(req: Request, res: Response) {
+        const teamData = req.body;
         try {
-            const teamData = req.body;
             const createdTeam = await this.teamService.createTeam(teamData);
             return res.status(201).json(createdTeam);
         } catch (err) {
@@ -26,9 +26,8 @@ export default class TeamController {
     }
 
     async getTeamById(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
-            
+        const { id } = req.params;
+        try {            
             const team = await this.teamService.getTeamById(Number(id));
             return res.status(200).json(team);
         } catch (err) {
@@ -38,10 +37,9 @@ export default class TeamController {
     }
 
     async updateTeamById(req: Request, res: Response) {
+        const { id } = req.params;
+        const updatedTeamData = req.body;
         try {
-            const { id } = req.params;
-            const updatedTeamData = req.body;
-
             const team = await this.teamService.updateTeamById(Number(id), updatedTeamData);
             return res.status(200).json(team);
         } catch (err) {
@@ -51,9 +49,8 @@ export default class TeamController {
     }
 
     async deleteTeamById(req: Request, res: Response) {
+        const { id } = req.params;
         try {
-            const { id } = req.params;
-
             const deletedTeam = await this.teamService.deleteTeamById(Number(id));
             return res.status(200).json(deletedTeam);
         } catch (err) {
