@@ -15,6 +15,7 @@ Team.init({
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+      allowNull: false,
     },
     team_name: {
       type: DataTypes.STRING,
