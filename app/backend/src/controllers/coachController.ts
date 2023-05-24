@@ -5,8 +5,8 @@ export default class CoachController {
     constructor(private coachService = new CoachService()) { }
 
     async createCoach(req: Request, res: Response) {
+        const coachData = req.body;
         try {
-            const coachData = req.body;
             const createdCoach = await this.coachService.createCoach(coachData);
             return res.status(201).json(createdCoach);
         } catch (err) {
@@ -26,9 +26,8 @@ export default class CoachController {
     }
 
     async getCoachById(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
-            
+        const { id } = req.params;
+        try {            
             const coach = await this.coachService.getCoachById(Number(id));
             return res.status(200).json(coach);
         } catch (err) {
@@ -38,10 +37,9 @@ export default class CoachController {
     }
 
     async updateCoachById(req: Request, res: Response) {
+        const { id } = req.params;
+        const updatedCoachData = req.body;
         try {
-            const { id } = req.params;
-            const updatedCoachData = req.body;
-
             const coach = await this.coachService.updateCoachById(Number(id), updatedCoachData);
             return res.status(200).json(coach);
         } catch (err) {
@@ -51,9 +49,8 @@ export default class CoachController {
     }
 
     async deleteCoachById(req: Request, res: Response) {
+        const { id } = req.params;
         try {
-            const { id } = req.params;
-
             const deletedCoach = await this.coachService.deleteCoachById(Number(id));
             return res.status(200).json(deletedCoach);
         } catch (err) {
