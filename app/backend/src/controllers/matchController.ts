@@ -5,8 +5,8 @@ export default class MatchController {
     constructor(private matchService = new MatchService()) {}
 
     async createMatch(req: Request, res: Response) {
+        const matchData = req.body;
         try {
-            const matchData = req.body;
             const createdMatch = await this.matchService.createMatch(matchData);
             return res.status(201).json(createdMatch);
         } catch (err) {
@@ -26,9 +26,8 @@ export default class MatchController {
     }
 
     async getMatchById(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
-            
+        const { id } = req.params;
+        try {            
             const matches = await this.matchService.getMatchById(Number(id));
             return res.status(200).json(matches);
         } catch (err) {
@@ -38,10 +37,9 @@ export default class MatchController {
     }
 
     async updateMatchById(req: Request, res: Response) {
+        const { id } = req.params;
+        const updatedMatchData = req.body;
         try {
-            const { id } = req.params;
-            const updatedMatchData = req.body;
-
             const match = await this.matchService.updateMatchById(Number(id), updatedMatchData);
             return res.status(200).json(match);
         } catch (err) {
@@ -51,9 +49,8 @@ export default class MatchController {
     }
 
     async deleteMatchById(req: Request, res: Response) {
+        const { id } = req.params;
         try {
-            const { id } = req.params;
-
             const deletedMatch = await this.matchService.deleteMatchById(Number(id));
             return res.status(200).json(deletedMatch);
         } catch (err) {
