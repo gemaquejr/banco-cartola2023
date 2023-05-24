@@ -5,8 +5,8 @@ export default class PlayerController {
     constructor(private playerService = new PlayerService()) {}
 
     async createPlayer(req: Request, res: Response) {
+        const playerData = req.body;
         try {
-            const playerData = req.body;
             const createdPlayer = await this.playerService.createPlayer(playerData);
             return res.status(201).json(createdPlayer);
         } catch (err) {
@@ -26,9 +26,8 @@ export default class PlayerController {
     }
 
     async getPlayerById(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
-            
+        const { id } = req.params;
+        try {            
             const player = await this.playerService.getPlayerById(Number(id));
             return res.status(200).json(player);
         } catch (err) {
@@ -38,10 +37,9 @@ export default class PlayerController {
     }
 
     async updatePlayerById(req: Request, res: Response) {
+        const { id } = req.params;
+        const updatedPlayerData = req.body;
         try {
-            const { id } = req.params;
-            const updatedPlayerData = req.body;
-
             const player = await this.playerService.updatePlayerById(Number(id), updatedPlayerData);
             return res.status(200).json(player);
         } catch (err) {
@@ -51,9 +49,8 @@ export default class PlayerController {
     }
 
     async deletePlayerById(req: Request, res: Response) {
+        const { id } = req.params;
         try {
-            const { id } = req.params;
-
             const deletedPlayer = await this.playerService.deletePlayerById(Number(id));
             return res.status(200).json(deletedPlayer);
         } catch (err) {
