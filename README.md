@@ -1,2 +1,2 @@
 # Banco Cartola 2023
-# Em construção... 🚧
+# Em construção... rodada 8 🚧
